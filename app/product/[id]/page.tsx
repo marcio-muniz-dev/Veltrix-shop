@@ -10,6 +10,12 @@ type ProductPageProps = {
   }>;
 };
 
+export async function generateStaticParams() {
+  return [
+    { id: "prod_MLH5Wy0Y97hDAC" },
+  ];
+}
+
 async function getProduct(id: string) {
   "use cache";
 
