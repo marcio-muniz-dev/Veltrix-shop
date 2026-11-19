@@ -3,6 +3,12 @@ import { cacheLife } from "next/cache";
 import Stripe from "stripe";
 import { stripe } from "@/src/lib/stripe";
 import Home from "./home";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Home | Veltrix Shop",
+  description: "Confira nossos produtos na Veltrix Shop.",
+};
 
 async function Products() {
   "use cache";

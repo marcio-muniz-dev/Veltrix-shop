@@ -1,5 +1,7 @@
+
 import { Suspense } from "react";
 import { cacheLife } from "next/cache";
+import type { Metadata } from "next";
 import Stripe from "stripe";
 import { stripe } from "@/src/lib/stripe";
 import Product from "./product";
@@ -38,8 +40,19 @@ async function getProduct(id: string) {
       currency: "BRL",
     }).format(price.unit_amount! / 100),
     description: product.description,
-      defaultPriceId: price.id,
+    defaultPriceId: price.id,
+  };
+}
 
+export async function generateMetadata({
+  params,
+}: ProductPageProps): Promise<Metadata> {
+  const { id } = await params;
+  const product = await getProduct(id);
+
+  return {
+    title: `${product.name} | Veltrix Shop`,
+    description: product.description ?? "Confira este produto.",
   };
 }
 
